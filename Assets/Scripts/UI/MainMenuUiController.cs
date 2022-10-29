@@ -16,6 +16,7 @@ public class MainMenuUiController : MonoBehaviour
     //ChooseLevelButtons
     [SerializeField] private Button _infinityLevel;
     [SerializeField] private Button _premadeLevel;
+    [SerializeField] private Button _backButton;
     
 
     // Start is called before the first frame update
@@ -23,6 +24,22 @@ public class MainMenuUiController : MonoBehaviour
     {
         _chooseLevel.onClick.AddListener(SwapScreen);
         _quitButton.onClick.AddListener(QuitGame);
+
+        _infinityLevel.onClick.AddListener(LoadInfinityLevel);
+        _premadeLevel.onClick.AddListener(LoadPremadeLevel);
+
+        _backButton.onClick.AddListener(SwapScreen);
+    }
+
+    private void OnDestroy()
+    {
+        _chooseLevel.onClick.RemoveAllListeners();
+        _quitButton.onClick.RemoveAllListeners();
+
+        _infinityLevel.onClick.RemoveAllListeners();
+        _premadeLevel.onClick.RemoveAllListeners();
+
+        _backButton.onClick.RemoveAllListeners();
     }
 
     private void SwapScreen()
